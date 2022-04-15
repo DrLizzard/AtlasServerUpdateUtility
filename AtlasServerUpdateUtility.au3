@@ -1,7 +1,7 @@
 #Region ;**** Directives created by AutoIt3Wrapper_GUI ****
 #AutoIt3Wrapper_Icon=Resources\phoenix.ico
-#AutoIt3Wrapper_Outfile=Builds\AtlasServerUpdateUtility_v2.3.7.exe
-#AutoIt3Wrapper_Outfile_x64=Builds\AtlasServerUpdateUtility_v2.3.7_64-bit(x64).exe
+#AutoIt3Wrapper_Outfile=Builds\AtlasServerUpdateUtility_v2.3.7_vlad.exe
+#AutoIt3Wrapper_Outfile_x64=Builds\AtlasServerUpdateUtility_v2.3.7_vlad_64-bit(x64).exe
 #AutoIt3Wrapper_Compile_Both=y
 #AutoIt3Wrapper_UseX64=y
 #AutoIt3Wrapper_Res_Comment=By Phoenix125 based on Dateranoth's ConanServerUtility v3.3.0-Beta.3
@@ -83,16 +83,16 @@ If Not FileExists($aFolderTemp) Then
 		DirCreate($aFolderTemp)
 	Until FileExists($aFolderTemp)
 EndIf
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_button_green_left1.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_button_red_left1.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_check_gray_left1.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_check_green_left1.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_toggle_off_left0.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_toggle_on_left0.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_blank.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_AtlasLogo.png", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_Blackwood.jpg", $aFolderTemp, 0)
-FileInstall("K:\AutoIT\_MyProgs\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_blackwoodlogosm.jpg", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_button_green_left1.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_button_red_left1.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_check_gray_left1.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_check_green_left1.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_toggle_off_left0.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_toggle_on_left0.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_blank.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_AtlasLogo.png", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_Blackwood.jpg", $aFolderTemp, 0)
+FileInstall("F:\Code\AtlasServerUpdateUtility\Resources\AtlasUtilFiles\i_blackwoodlogosm.jpg", $aFolderTemp, 0)
 
 Local $aUtilVerStable = "v2.3.7" ; (2021-02-07)
 Local $aUtilVerBeta = "v2.3.7" ; (2021-02-07)
@@ -8743,7 +8743,7 @@ Func GetInstalledVersion($sGameDir)
 	Else
 		Local $sFileRead = FileRead($hFileOpen, 100000000)
 		$aReturn[0] = True
-		$aReturn[1] = _ArrayToString(_StringBetween($sFileRead, "buildid""" & @TAB & @TAB & """", """"))
+		$aReturn[1] = _ArrayToString(_StringBetween($sFileRead, '"buildid"' & @TAB & @TAB & '"', '"')) ; Changed by Vlad
 		#cs		Local $aAppInfo = StringSplit($sFileRead, '"buildid"', 1)
 
 			If UBound($aAppInfo) >= 3 Then
@@ -23162,7 +23162,7 @@ Func _BlackwoodDefaultGUS($tCopyToGUSTF = True, $tOnlyCopyIfDoesNotExistTF = Fal
 	_FileWriteFromArray($tFile, $xArray)
 EndFunc   ;==>_BlackwoodDefaultGUS
 
-Func WriteRCONStartingStuck($tGrd, $tMin)
+Func WriteRCONStartingStuck() ; Changed by Vlad
 	Local $xArray[34]
 	$xArray[0] = _NowCalc & ' AtlasServerUpdateUtility ATTENTION!'
 	$xArray[1] = ''
